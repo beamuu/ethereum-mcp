@@ -9,6 +9,22 @@ import { registerResources } from "./resources";
 const app = express();
 app.use(express.json());
 
+// Enable CORS for all routes
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, mcp-session-id");
+  res.header("Access-Control-Expose-Headers", "mcp-session-id");
+  
+  // Handle preflight requests
+  if (req.method === "OPTIONS") {
+    res.sendStatus(200);
+    return;
+  }
+  
+  next();
+});
+
 // Log configuration on startup
 console.log("🔧 Configuration loaded successfully");
 console.log(`📡 RPC URL: ${getRpcUrl()}`);
