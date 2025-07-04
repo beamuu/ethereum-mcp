@@ -13,15 +13,18 @@ app.use(express.json());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, mcp-session-id");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization, mcp-session-id"
+  );
   res.header("Access-Control-Expose-Headers", "mcp-session-id");
-  
+
   // Handle preflight requests
   if (req.method === "OPTIONS") {
     res.sendStatus(200);
     return;
   }
-  
+
   next();
 });
 
@@ -107,6 +110,17 @@ app.get("/mcp", handleSessionRequest);
 
 // Handle DELETE requests for session termination
 app.delete("/mcp", handleSessionRequest);
+
+// Health check endpoint
+app.get("/health", (_req, res) => {
+  res.status(200).json({
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    rpcUrl: getRpcUrl(),
+    version: "1.0.0",
+  });
+});
 
 const port = getPort();
 app.listen(port, () => {
