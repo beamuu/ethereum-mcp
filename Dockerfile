@@ -1,34 +1,20 @@
-# Use Node.js 20 Alpine for smaller image size
-FROM node:20-alpine
+# 1. Use Node 20 as base image
+FROM node:20-slim
 
-# Set working directory
+# 2. Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package.json yarn.lock* package-lock.json* ./
+# 3. Copy package files and install deps
+COPY package*.json ./
+RUN npm install
 
-# Install dependencies
-RUN npm ci --only=production
+# 4. Copy all source files
+COPY . .
 
-# Copy TypeScript configuration
-COPY tsconfig.json ./
+# 5. Build the TypeScript code (assumes tsconfig.json exists)
+RUN npx tsc
 
-# Copy source code
-COPY src/ ./src/
-
-# Install dev dependencies and build
-RUN npm ci && npm run build && npm prune --production
-
-# Create non-root user for security
-RUN addgroup -g 1001 -S nodejs && \
-  adduser -S mcp -u 1001 -G nodejs
-
-# Change ownership of the app directory
-RUN chown -R mcp:nodejs /app
-USER mcp
-
-# Expose the port (default 3000, can be overridden with PORT env var)
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+# 6. Run compiled JavaScript
+CMD ["node", "dist/index.js"]

@@ -1,6 +1,6 @@
 import { formatUnits } from "ethers";
-import { client } from "../../modules/ethereum";
-import { getSymbol } from "../../config";
+import { getSymbol } from "../../../config";
+import { client } from "..";
 
 export const handleGetBalance = async (address: string): Promise<string> => {
   const bal = await client.getBalance(address);

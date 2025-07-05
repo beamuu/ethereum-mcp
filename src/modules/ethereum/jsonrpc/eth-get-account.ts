@@ -1,4 +1,5 @@
-import { client } from "../../modules/ethereum";
+import { client } from "..";
+
 
 export const handleGetAccount = async (address: string): Promise<string> => {
   const [balance, nonce, code] = await Promise.all([

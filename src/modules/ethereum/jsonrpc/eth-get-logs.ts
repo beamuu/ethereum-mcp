@@ -1,4 +1,4 @@
-import { client } from "../../modules/ethereum";
+import { client } from "..";
 
 export const handleGetLogs = async (params: {
   fromBlock?: string;

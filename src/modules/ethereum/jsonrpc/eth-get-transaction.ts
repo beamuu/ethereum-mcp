@@ -1,4 +1,4 @@
-import { client } from "../../modules/ethereum";
+import { client } from "..";
 
 export const handleGetTransaction = async (txHash: string): Promise<string> => {
   const tx = await client.getTransaction(txHash);

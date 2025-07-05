@@ -1,4 +1,4 @@
-import { client } from "../../modules/ethereum";
+import { client } from "..";
 
 export const handleGetCode = async (address: string): Promise<string> => {
   const code = await client.getCode(address);

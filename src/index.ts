@@ -5,6 +5,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
 import { getRpcUrl, getPort } from "./config";
 import { registerResources } from "./resources";
+import { registerTools } from "./tools";
 
 const app = express();
 app.use(express.json());
@@ -71,6 +72,7 @@ app.post("/mcp", async (req, res) => {
     });
 
     registerResources(server);
+    registerTools(server);
     // Connect to the MCP server
     await server.connect(transport);
   } else {

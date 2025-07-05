@@ -1,4 +1,4 @@
-import { client } from "../../modules/ethereum";
+import { client } from "..";
 
 export const handleGasPrice = async (): Promise<string> => {
   const gasPrice = await client.getFeeData();

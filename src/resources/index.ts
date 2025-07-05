@@ -2,16 +2,16 @@ import {
   McpServer,
   ResourceTemplate,
 } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { handleGetBalance } from "./jsonrpc/eth-get-balance";
-import { handleGetTransaction } from "./jsonrpc/eth-get-transaction";
-import { handleGetTransactionReceipt } from "./jsonrpc/eth-get-transaction-receipt";
-import { handleGetBlockByNumber } from "./jsonrpc/eth-get-block-by-number";
-import { handleGetBlockByHash } from "./jsonrpc/eth-get-block-by-hash";
-import { handleGasPrice } from "./jsonrpc/eth-gas-price";
-import { handleGetAccount } from "./jsonrpc/eth-get-account";
-import { handleGetCode } from "./jsonrpc/eth-get-code";
-import { handleGetLogs } from "./jsonrpc/eth-get-logs";
 import { ethereumKnowledge } from "./base-knowledge/ethereum";
+import { handleGasPrice } from "../modules/ethereum/jsonrpc/eth-gas-price";
+import { handleGetAccount } from "../modules/ethereum/jsonrpc/eth-get-account";
+import { handleGetBalance } from "../modules/ethereum/jsonrpc/eth-get-balance";
+import { handleGetBlockByHash } from "../modules/ethereum/jsonrpc/eth-get-block-by-hash";
+import { handleGetBlockByNumber } from "../modules/ethereum/jsonrpc/eth-get-block-by-number";
+import { handleGetCode } from "../modules/ethereum/jsonrpc/eth-get-code";
+import { handleGetLogs } from "../modules/ethereum/jsonrpc/eth-get-logs";
+import { handleGetTransaction } from "../modules/ethereum/jsonrpc/eth-get-transaction";
+import { handleGetTransactionReceipt } from "../modules/ethereum/jsonrpc/eth-get-transaction-receipt";
 
 export function registerResources(server: McpServer) {
   server.registerResource(
