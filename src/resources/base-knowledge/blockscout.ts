@@ -55,6 +55,8 @@ GET /addresses/{address_hash}/transactions
 List transactions for an address. Filter with query param: filter.
 GET /addresses/{address_hash}/token-transfers
 List token transfers for an address. Filter with type, filter, token.
+GET /addresses/0x5062CB0af889eB77e59482a0D71448Fb3061d3bf/tokens
+List tokens held by an address. Filter with optional query param: type ERC20 ERC721 ERC1155.
 GET /addresses/{address_hash}/internal-transactions
 List internal transactions for an address. Filter with query param: filter.
 GET /addresses/{address_hash}/logs
