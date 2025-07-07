@@ -444,7 +444,7 @@ export function registerTools(server: McpServer) {
         {
             title: "Blockchain Explorer",
             description:
-                "Search for transactions, blocks, addresses, and tokens on the blockchain explorer. If the explorer is not available, fallback to the use-json-rpc tool.",
+                "Search for transactions, blocks, addresses, and tokens on the blockchain explorer. Make sure you have read the use-blockscout-instruction first. If the explorer is not available, fallback to the use-json-rpc tool.",
             inputSchema: {
                 endpoint: z
                     .string()
